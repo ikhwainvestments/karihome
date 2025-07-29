@@ -131,7 +131,7 @@ body::-webkit-scrollbar-thumb {
 /* Base Header Styles */
 .header {
     position: fixed;
-    top: 25px;
+    top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
@@ -139,8 +139,13 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
     min-height: 100px;
     padding: 15px 0;
-    background-color: transparent;
+    background-color: rgb(31 41 55);
     transition: background-color 0.3s ease, box-shadow 0.3s ease, min-height 0.3s ease;
+}
+
+.index-page .header {
+    background-color: transparent;
+    top: 25px;
 }
 
 .header.scrolled {
@@ -388,6 +393,7 @@ body::-webkit-scrollbar-thumb {
 @media (max-width: 1200px) and (min-width: 992px) {
     .header .mobile-menu .main-nav > li > a {
         font-size: 15px;
+        padding: 10px;
     }
 }
 
@@ -411,7 +417,7 @@ footer {
 footer .container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    gap: 25px;
 }
 
 footer .container:nth-child(1) {
@@ -585,7 +591,6 @@ footer .footer-column ul li a:hover::before {
 .footer__icons li a:hover {
     transform: translateY(-5px);
 }
-
 /* ---------------------- */
 /* Media Queries */
 /* ---------------------- */
@@ -593,15 +598,11 @@ footer .footer-column ul li a:hover::before {
     footer .container:nth-child(1) {
         align-items: flex-start !important;
     }
-    
-    footer .container {
-        gap: 35px;
+    footer .footer-column:nth-child(4) {
+        flex: 0 1 100%
     }
-    
-    footer .footer-column:nth-child(1) {
-        flex: unset;
-        width: 100%;
-        margin-bottom: 32px;
+    footer .container {
+        flex-wrap: wrap;
     }
     
     footer .footer-column {

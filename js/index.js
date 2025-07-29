@@ -42,13 +42,13 @@ faqItems.forEach((item, index) => {
             case 1:
                 videoBg.style.opacity = '0';
                 setTimeout(() => {
-                    aboutContent.style.backgroundImage = 'url("images/about/1.png")';
+                    aboutContent.style.backgroundImage = 'url("/images/about/1.webp")';
                 }, 300);
                 break;
             case 2:
                 videoBg.style.opacity = '0';
                 setTimeout(() => {
-                    aboutContent.style.backgroundImage = 'url("images/about/2.png")';
+                    aboutContent.style.backgroundImage = 'url("/images/about/2.webp")';
                 }, 300);
                 break;
         }
@@ -81,15 +81,15 @@ Dropzone.autoDiscover = false;
 
 document.addEventListener('DOMContentLoaded', function() {
     const myDropzone = new Dropzone("#myDropzone", {
-        url: "http://localhost:8000/api/ikhwadigital/contact",
+        url: "http://api.ikhwadigital.com/api/karihome/contact",
         autoProcessQueue: false,
         maxFilesize: 2,
         acceptedFiles: ".jpg,.jpeg,.png,.pdf,.xlsx,.docx",
         addRemoveLinks: true,
         dictDefaultMessage: "",
-        dictFileTooBig: "الملف كبير جداً ({{filesize}}MB). الحد الأقصى: {{maxFilesize}}MB.",
-        dictInvalidFileType: "هذا النوع من الملفات غير مسموح به.",
-        dictRemoveFile: "حذف الملف",
+        dictFileTooBig: "File is too big ({{filesize}}MB). Max filesize: {{maxFilesize}}MB.",
+        dictInvalidFileType: "This file type is not allowed.",
+        dictRemoveFile: "Delete file",
         init: function() {
             this.on("addedfile", function(file) {
                 if (file.name.length > 30) {
@@ -110,27 +110,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 const phone = document.getElementById("phone").value.trim();
                 
                 if (!name) {
-                    showAlert("حقل الاسم مطلوب", "danger");
+                    showAlert("Name field is required", "danger");
                     return;
                 }
                 
                 if (!email) {
-                    showAlert("حقل البريد الإلكتروني مطلوب", "danger");
+                    showAlert("Email field is required", "danger");
                     return;
                 } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-                    showAlert("البريد الإلكتروني غير صالح", "danger");
+                    showAlert("Invalid email address", "danger");
                     return;
                 }
                 
                 if (!phone) {
-                    showAlert("حقل الهاتف مطلوب", "danger");
+                    showAlert("Phone field is required", "danger");
                     return;
                 }
 
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = `
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    جاري الإرسال...
+                    Sending...
                 `;
 
                 const formData = new FormData();
@@ -139,16 +139,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 formData.append("phone", phone);
                 formData.append("description", document.getElementById("description").value);
                 
-                if (document.getElementById("radio1").checked) formData.append("option", "استفسار");
-                else if (document.getElementById("radio2").checked) formData.append("option", "اقتراح");
-                else if (document.getElementById("radio3").checked) formData.append("option", "شكوى");
+                if (document.getElementById("radio1").checked) formData.append("option", "Inquiry");
+                else if (document.getElementById("radio2").checked) formData.append("option", "Suggestion");
+                else if (document.getElementById("radio3").checked) formData.append("option", "Complaint");
 
                 if (myDropzone.files.length > 0) {
                     formData.append("file", myDropzone.files[0]);
                 }
 
                 try {
-                    const response = await fetch("http://localhost:8000/api/ikhwanetwork/contact", {
+                    const response = await fetch("http://api.ikhwadigital.com/api/karihome/contact", {
                         method: "POST",
                         body: formData,
                     });
@@ -156,20 +156,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     const result = await response.json();
                     
                     if (response.ok) {
-                        showAlert("تم إرسال الرسالة بنجاح", "success");
+                        showAlert("Message sent successfully", "success");
                         
                         form.reset();
                         myDropzone.removeAllFiles();
                     } else {
-                        showAlert(result.message || "فشل في إرسال الرسالة", "danger");
+                        showAlert(result.message || "Failed to send message", "danger");
                     }
                     
                 } catch (error) {
-                    showAlert("حدث خطأ في الاتصال بالخادم", "danger");
+                    showAlert("Error connecting to server", "danger");
                     console.error(error);
                 } finally {
                     submitBtn.disabled = false;
-                    submitBtn.textContent = "إرسال";
+                    submitBtn.textContent = "Submit";
                 }
             });
         }

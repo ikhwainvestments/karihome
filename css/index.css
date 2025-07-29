@@ -60,11 +60,11 @@
 
 /* Slide Background Images */
 .hero .swiper-slide.slide2 {
-    background-image: url("../images/hero/slide2.png");
+    background-image: url("../images/hero/slide2.webp");
 }
 
 .hero .swiper-slide.slide3 {
-    background-image: url("../images/hero/slide3.png");
+    background-image: url("../images/hero/slide3.webp");
 }
 
 /* Pagination Container */
@@ -385,6 +385,10 @@
     position: relative;
 }
 
+.services-section .section-title {
+    color: var(--white);
+}
+
 .services-section .overlay {
     position: absolute;
     top: 0;
@@ -621,7 +625,7 @@
 .faq-section {
     padding: 80px 0;
     margin: 80px 0;
-    background-image: url('../images/faq_bg.png');
+    background-image: url('../images/faq_bg.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -724,6 +728,11 @@
     background-size: cover;
 }
 
+.contact-section .section-title {
+    color: var(--white);
+}
+
+
 .contact-section .section-description {
     color: var(--white);
 }
@@ -788,27 +797,36 @@
     border: 2px solid var(--primary);
     outline: none;
 }
-.contact-section .contact-content .contact-form form input[type="file"] {
-    display: none;
+.contact-section .dropzone {
+    border: 2px dashed var(--white-20);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    background: transparent;
 }
 
-.contact-section .contact-content .contact-form form .file-upload .file-upload-label {
-    width: 100%;
-    border-radius: 6px;
-    border: 2px solid var(--white-20);
-    padding: 16px 50px;
-    font-size: 13px;
-    color: var(--white-60);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-direction: column;
-    background-color:  var(--white-5);
-}
-
-.contact-section .contact-content .contact-form form .file-upload .file-upload-label i {
+.contact-section .dropzone .dz-message i {
     font-size: 24px;
+    color: var(--white);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.contact-section .dropzone .dz-message span {
+    color: var(--white);
+    font-size: 14px;
+}
+
+.contact-section .dropzone .dz-preview .dz-filename span {
+    display: inline-block;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-section .dropzone .dz-preview .dz-error-message {
+    top: 140px;
 }
 
 .contact-section .contact-content .contact-form .contact-options .form-check {

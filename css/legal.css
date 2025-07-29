@@ -16,7 +16,7 @@
 .legal ol li span {
     font-weight: 600;
     font-size: 18px;
-    color: var(--heading-color);
+    color: var(--text);
     display: block;
     margin: 10px 0;
 }
@@ -28,11 +28,13 @@
     line-height: 1.6
 }
 
-.legal ol li p,
+.legal ol li p {
+    color: #000;
+}
 .legal ol li,
 .legal ul li {
     font-weight: 500;
-    color: var(--text-color);
+    color: #000;
 }
 
 .legal ol li, .legal ul li {
